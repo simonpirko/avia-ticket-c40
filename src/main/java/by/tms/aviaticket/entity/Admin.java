@@ -4,17 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class User extends Passenger {
+@AllArgsConstructor
+public class Admin{
     private long id;
-    private String email;
     private String username;
+    private String fname;
+    private String lname;
     private String password;
-    private int miles;
-    private int flightCount;
-    private List<Order> orderList;
+    private Role role;
 }

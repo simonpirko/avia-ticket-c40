@@ -13,11 +13,10 @@ import java.util.List;
 @AllArgsConstructor
 public class Ticket {
     private long id;
-    private List<Flight> flight;
+    private Flight flight;
     private BigDecimal price;
     private String type;
-    private int number;
-    private User user;
+    private int numberOfSeats;
+    private Passenger user;
     private LocalDateTime buyTime;
-
 }

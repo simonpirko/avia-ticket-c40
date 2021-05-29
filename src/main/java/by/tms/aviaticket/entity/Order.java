@@ -10,8 +10,9 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Flight {
-    private int id;
-    List<Transfer> transferList;
-    private int totalDistance;
+public class Order {
+    private long id;
+    private User user;
+    private List<Ticket> orderList;
+    private LocalDateTime orderDate;
 }

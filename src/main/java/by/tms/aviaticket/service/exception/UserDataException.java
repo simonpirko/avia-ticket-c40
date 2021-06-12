@@ -1,4 +1,4 @@
-package by.tms.aviaticket.Exception;
+package by.tms.aviaticket.service.exception;
 
 public class UserDataException extends RuntimeException{
     public UserDataException() {

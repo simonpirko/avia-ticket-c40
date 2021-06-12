@@ -1,7 +1,7 @@
-package by.tms.aviaticket.Controller;
+package by.tms.aviaticket.controller;
 
-import by.tms.aviaticket.Exception.UserDataException;
-import by.tms.aviaticket.Service.UserService;
+import by.tms.aviaticket.service.exception.UserDataException;
+import by.tms.aviaticket.service.UserService;
 import by.tms.aviaticket.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

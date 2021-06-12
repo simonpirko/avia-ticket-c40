@@ -1,6 +1,6 @@
-package by.tms.aviaticket.Service;
+package by.tms.aviaticket.service;
 
-import by.tms.aviaticket.Exception.UserDataException;
+import by.tms.aviaticket.service.exception.UserDataException;
 import by.tms.aviaticket.dao.UserDao;
 import by.tms.aviaticket.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;

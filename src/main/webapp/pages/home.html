@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru"
+      xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/layout}">
 <head>
@@ -7,12 +8,12 @@
     <title>Главная страница</title>
 </head>
 <body>
-    <div class="container" layout:fragment="content">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Контент страницы</h1>
-            </div>
+<div class="container" layout:fragment="content">
+    <div class="row">
+        <div class="col-md-12">
+            <th:block th:replace="fragments/filter :: filter"></th:block>
         </div>
     </div>
+</div>
 </body>
 </html>

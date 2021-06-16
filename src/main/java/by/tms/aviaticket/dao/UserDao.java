@@ -3,15 +3,16 @@ package by.tms.aviaticket.dao;
 import by.tms.aviaticket.entity.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserDao {
     void add(User user);
     List<User> getAll();
-    User getById(long id);
+    Optional<User> getById(long id);
     User getByUsername(String username);
-    User getByEmail(String email);
+    Optional<User> getByEmail(String email);
     void remove(long id);
-    void updateEmail(long id,String email);
+    void updatePhoneNumber(long id,String email);
     void updateFName(long id,String fname);
     void updateLName(long id,String lname);
     void updateSex(long id,String sex);

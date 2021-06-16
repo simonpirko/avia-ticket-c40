@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="container" layout:fragment="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 mt-2 mb-2">
+
+            <div class="d-grid gap-2">
+              <a class="btn btn-outline-primary" href="/user/profile">Профиль</a>
+              <a class="btn btn-outline-primary" href="/user/profile/edit">Редактирование профиля</a>
+              <a class="btn btn-outline-primary" href="/user/profile/editPassword">Редактирование пароля</a>
+              <a class="btn btn-outline-primary" href="/user/profile/currentOrders">Текущие заказы</a>
+              <a class="btn btn-outline-primary" href="/user/profile/orderList">История покупок</a>
+            </div>
+          </div>
+          <div class="col-md-9 mt-2 mb-2">
+            <div class="card p-2">
+              <span class="mt-1"><b>First name: </b> <span th:text="${session.user.fname}"></span></span>
+              <span class="mt-1"><b>Last name: </b> <span th:text="${session.user.lname}"></span></span>
+              <span class="mt-1"><b>Phone number: </b> <span th:text="${session.user.phoneNumber}"></span></span>
+              <span class="mt-1"><b>Email: </b> <span th:text="${session.user.email}"></span></span>
+              <span class="mt-1"><b>Password: </b> <span th:text="${session.user.password}"></span></span>
+              <span class="mt-1"><b>Miles: </b> <span th:text="${session.user.miles}"></span></span>
+              <hr>
+              <a class="btn btn-outline-warning" href="/logout">Выйти из аккаунта</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

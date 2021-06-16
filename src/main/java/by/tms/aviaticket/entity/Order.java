@@ -15,4 +15,5 @@ public class Order {
     private User user;
     private List<Ticket> orderList;
     private LocalDateTime orderDate;
+    private Status status;
 }

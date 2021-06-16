@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div class="container" layout:fragment="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 mt-2 mb-2">
+
+            <div class="d-grid gap-2">
+              <a class="btn btn-outline-primary" href="/user/profile">Профиль</a>
+              <a class="btn btn-outline-primary" href="/user/profile/edit">Редактирование профиля</a>
+              <a class="btn btn-outline-primary" href="/user/profile/editPassword">Редактирование пароля</a>
+              <a class="btn btn-outline-primary" href="/user/profile/currentOrders">Текущие заказы</a>
+              <a class="btn btn-outline-primary" href="/user/profile/orderList">История покупок</a>
+            </div>
+
+          </div>
+          <div class="col-md-9 mt-2 mb-2">
+            <div  th:unless="${orders}" class="card p-2">
+              <div th:each="order : ${orders}">
+                <div  class="alert alert-primary" role="alert">
+                  <div>Date<span th:text="${order.orderDate}"></span></div>
+                  <div th:each="ticket : ${order.orderList}">
+                    <div>
+                      <div>price <span th:text="${ticket.price}"></span></div>
+                      <div>numberOfSeats <span th:text="${ticket.numberOfSeats}"></span></div>
+                      <div>First name <span th:text="${ticket.user.fname}"></span></div>
+                      <div>Lasnt name <span th:text="${ticket.user.lname}"></span></div>
+<!--                      <div th:each="transfer : ${ticket.flight.transferList}">-->
+<!--                        <div>Departure<span th:text="${transfer.placeOfDeparture}"></span></div>-->
+<!--                        <div>Arrival<span th:text="${transfer.placeOfArrival}"></span></div>-->
+<!--                      </div>-->
+<!--                      <div>Distance<span th:text="${ticket.flight.totalDistance}"></span></div>-->
+                    </div>
+                  </div>
+                  <form th:action="@{/user/profile/currentOrders/delete}" method="post" >
+                    <input type="hidden" th:value="${order.id}" name="id">
+                    <button type="submit" class="btn btn-outline-success">отменить заказ</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

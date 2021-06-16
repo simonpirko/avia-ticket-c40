@@ -1,17 +1,24 @@
 package by.tms.aviaticket.service;
 
+import by.tms.aviaticket.entity.UserDto.UserChangeDataDto;
+import by.tms.aviaticket.entity.UserDto.UserLoginDto;
+import by.tms.aviaticket.entity.UserDto.UserPasswordEditDto;
+import by.tms.aviaticket.entity.UserDto.UserRegDto;
 import by.tms.aviaticket.service.exception.UserDataException;
 import by.tms.aviaticket.dao.UserDao;
 import by.tms.aviaticket.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class UserService {
     @Autowired
     private UserDao userDao;
 
-    public void add(User user) {
+    public void add(UserRegDto dto) {
+        User user = createUser(dto);
         if (userDao.containsByEmail(user.getEmail())) {
             throw new UserDataException("A user with this email already exists!");
         }
@@ -19,15 +26,61 @@ public class UserService {
     }
 
 
-    public User userAuth(String email, String password) {
-        User user = userDao.getByEmail(email);
-        if (user == null) {
+    public User userAuth(UserLoginDto dto) {
+        Optional<User> byEmail = userDao.getByEmail(dto.getEmail());
+
+        if (!byEmail.isPresent()) {
             throw new UserDataException("A user with this email doesn't exists!");
         }
-        if (!user.getPassword().equals(password)){
+        User user = byEmail.get();
+        if (!user.getPassword().equals(dto.getPassword())) {
             throw new UserDataException("Invalid password");
         }
         return user;
     }
+
+    public User changeData(User user, UserChangeDataDto dto) {
+
+
+        if (user.getFname().equals(dto.getFname()) &&
+                user.getLname().equals(dto.getLname()) &&
+                user.getPhoneNumber().equals(dto.getPhoneNumber())) {
+            throw new UserDataException("you haven't made any changes");
+
+        }
+        userDao.updateLName(user.getId(), dto.getLname());
+        userDao.updateFName(user.getId(), dto.getFname());
+        userDao.updatePhoneNumber(user.getId(), dto.getPhoneNumber());
+
+        return userDao.getById(user.getId()).get();
+    }
+
+    public User changePassword(UserPasswordEditDto dto, User user) {
+        if (!dto.getNewPassword().equals(dto.getConfirmPassword())) {
+            throw new UserDataException("the new password is different from the confirmed");
+        }
+
+        if (!dto.getPassword().equals(user.getPassword())) {
+            throw new UserDataException("Invalid password");
+        }
+
+        if (dto.getNewPassword().equals(dto.getPassword())) {
+            throw new UserDataException("old password is the same as new");
+        }
+
+        userDao.updatePassword(user.getId(), dto.getNewPassword());
+        return userDao.getById(user.getId()).get();
+    }
+
+    User createUser(UserRegDto dto) {
+        User user = new User();
+        user.setFname(dto.getFname());
+        user.setLname(dto.getLname());
+        user.setPassword(dto.getPassword());
+        user.setPhoneNumber(dto.getPhoneNumber());
+        user.setEmail(dto.getEmail());
+        return user;
+    }
+
 
 }

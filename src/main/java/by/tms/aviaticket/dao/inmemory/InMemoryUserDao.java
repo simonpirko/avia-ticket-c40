@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class InMemoryUserDao implements UserDao {
@@ -24,8 +25,8 @@ public class InMemoryUserDao implements UserDao {
     }
 
     @Override
-    public User getById(long id) {
-        return null;
+    public Optional<User> getById(long id) {
+        return userList.stream().filter(user -> user.getId() == id).findFirst();
     }
 
     @Override
@@ -34,8 +35,8 @@ public class InMemoryUserDao implements UserDao {
     }
 
     @Override
-    public User getByEmail(String email) {
-        return userList.stream().filter(user -> user.getEmail().equals(email)).findFirst().orElse(null);
+    public Optional<User> getByEmail(String email) {
+        return userList.stream().filter(user -> user.getEmail().equals(email)).findFirst();
     }
 
     @Override
@@ -44,18 +45,19 @@ public class InMemoryUserDao implements UserDao {
     }
 
     @Override
-    public void updateEmail(long id, String email) {
-
+    public void updatePhoneNumber(long id, String phoneNumber) {
+        userList.stream().filter(user -> user.getId() == id).findFirst().get().setPhoneNumber(phoneNumber);
     }
 
     @Override
     public void updateFName(long id, String fname) {
+        userList.stream().filter(user -> user.getId() == id).findFirst().get().setFname(fname);
 
     }
 
     @Override
     public void updateLName(long id, String lname) {
-
+        userList.stream().filter(user -> user.getId() == id).findFirst().get().setLname(lname);
     }
 
     @Override
@@ -65,11 +67,6 @@ public class InMemoryUserDao implements UserDao {
 
     @Override
     public boolean contains(String username) {
-        for (User user : userList) {
-            if (user.getUsername().equals(username)) {
-                return true;
-            }
-        }
         return false;
     }
 
@@ -85,6 +82,6 @@ public class InMemoryUserDao implements UserDao {
 
     @Override
     public void updatePassword(long id, String password) {
-
+        userList.stream().filter(user -> user.getId() == id).findFirst().get().setPassword(password);
     }
 }

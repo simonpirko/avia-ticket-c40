@@ -3,6 +3,7 @@ package by.tms.aviaticket.entity.UserDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -16,6 +17,7 @@ public class UserRegDto {
     @NotBlank(message = "Phone number cannot be empty")
     private String phoneNumber;
     @NotBlank(message = "Password cannot be empty")
+    @Length(min = 3, message = "The field must be at least 3 characters")
     private String password;
     @NotBlank(message = "First name cannot be empty")
     private String fname;

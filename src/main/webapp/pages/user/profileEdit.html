@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container" layout:fragment="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 mt-2 mb-2">
+                        <div class="d-grid gap-2">
+                            <a class="btn btn-outline-primary" href="/user/profile">Профиль</a>
+                            <a class="btn btn-outline-primary" href="/user/profile/edit">Редактирование профиля</a>
+                            <a class="btn btn-outline-primary" href="/user/profile/editPassword">Редактирование пароля</a>
+                            <a class="btn btn-outline-primary" href="/user/profile/currentOrders">Текущие заказы</a>
+                            <a class="btn btn-outline-primary" href="/user/profile/orderList">История покупок</a>
+                        </div>
+                    </div>
+                    <div class="col-md-9 mt-2 mb-2">
+                                        <form th:action="@{/user/profile/edit}" th:object="${user}" class="row g-3"
+                                              method="post">
+                                            <div class="col-md-6">
+                                                <label for="inputLastName" class="form-label">Имя</label>
+                                                <input th:field="*{fname}" type="text" class="form-control"
+                                                       id="inputLastName"
+                                                       required name="firstName" value="${sessionScope.user.firstName}">
+                                                <p th:if="${#fields.hasErrors('fname')}" th:errors="*{fname}"
+                                                   class="fs-6 text-danger fw-lighter">Incorrect date</p>
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="inputFirstName" class="form-label">Фамилия</label>
+                                                <input th:field="*{lname}" type="text" class="form-control"
+                                                       id="inputFirstName"
+                                                       required name="lastName" value="${sessionScope.user.lastName}">
+                                                <p th:if="${#fields.hasErrors('lname')}" th:errors="*{lname}"
+                                                   class="fs-6 text-danger fw-lighter">Incorrect date</p>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <label for="phone" class="form-label">Телефон</label>
+                                                <input th:field="*{phoneNumber}" type="text" class="form-control"
+                                                       id="phone"
+                                                       required name="lastName" value="${sessionScope.user.lastName}">
+                                                <p th:if="${#fields.hasErrors('phoneNumber')}"
+                                                   th:errors="*{phoneNumber}"
+                                                   class="fs-6 text-danger fw-lighter">Incorrect date</p>
+                                            </div>
+                                            <div class="col-12">
+                                                <button type="submit" class="btn btn-outline-success">Редактировать
+                                                    профиль
+                                                </button>
+                                                <span th:text="${message}"></span>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

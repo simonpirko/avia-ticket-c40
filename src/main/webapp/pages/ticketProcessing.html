@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Оформление билета</title>
+</head>
+<body>
+<div class="container" layout:fragment="content">
+    <div class="row">
+        <form action="/???" method="get">
+            <div class="mb-3">
+                <label class="form-label">Firstname</label>
+                <input type="text" class="form-control" id="Firstname">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Lastname</label>
+                <input type="text" class="form-control" id="Lastname">
+            </div>
+            <div class="mb-2" style="float:left;width: 50%">
+                <label class="form-label" >Sex</label>
+                <select id="sex" class="form-select">
+                    <option>male</option>
+                    <option>female</option>
+                </select>
+            </div>
+            <div class="mb-3" style="float:left;width: 50%">
+                <label class="form-label"  >Date of birth</label>
+                <input type="date" id="departureDate" class="form-control" placeholder="Date of birth">
+            </div>
+            <div class="mb-3" style="float:left; width: 10%">
+                <label class="form-label" >Passport series</label>
+                <input type="text" class="form-control" id="series">
+            </div>
+            <div class="mb-3" style="float:left;width: 45%">
+                <label class="form-label">Passport number</label>
+                <input type="text" class="form-control" style="float:left" id="number">
+            </div>
+            <div class="mb-3" style="float:left;width: 45%">
+                <label class="form-label"  >Date of issue</label>
+                <input type="date" id="departureIssue" class="form-control" placeholder="Date of issue">
+            </div>
+            <div class="mb-2" style="float:left;width: 50%">
+                <label class="form-label">class</label>
+                <select id="class" class="form-select">
+                    <option>economy</option>
+                    <option>business</option>
+                </select>
+            </div>
+            <div class="mb-3" style="float:right;width: 50%">
+                <label class="form-label">Seat number</label>
+                <input type="text" class="form-control" id="seatNumber">
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-primary">Issue a ticket</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+
+кнопка добавить ещё одного пассажира
+кнопка оформить билет, после оформления заказ отображается в ЛК у пользователя в текущих билетах

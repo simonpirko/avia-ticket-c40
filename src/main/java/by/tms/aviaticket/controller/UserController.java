@@ -1,10 +1,10 @@
 package by.tms.aviaticket.controller;
 
 import by.tms.aviaticket.entity.*;
-import by.tms.aviaticket.entity.UserDto.UserChangeDataDto;
-import by.tms.aviaticket.entity.UserDto.UserLoginDto;
-import by.tms.aviaticket.entity.UserDto.UserPasswordEditDto;
-import by.tms.aviaticket.entity.UserDto.UserRegDto;
+import by.tms.aviaticket.entity.dto.UserChangeDataDto;
+import by.tms.aviaticket.entity.dto.UserLoginDto;
+import by.tms.aviaticket.entity.dto.UserPasswordEditDto;
+import by.tms.aviaticket.entity.dto.UserRegDto;
 import by.tms.aviaticket.service.OrderService;
 import by.tms.aviaticket.service.exception.UserDataException;
 import by.tms.aviaticket.service.UserService;
@@ -19,9 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller

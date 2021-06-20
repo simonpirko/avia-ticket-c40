@@ -1,9 +1,9 @@
 package by.tms.aviaticket.service;
 
-import by.tms.aviaticket.entity.UserDto.UserChangeDataDto;
-import by.tms.aviaticket.entity.UserDto.UserLoginDto;
-import by.tms.aviaticket.entity.UserDto.UserPasswordEditDto;
-import by.tms.aviaticket.entity.UserDto.UserRegDto;
+import by.tms.aviaticket.entity.dto.UserChangeDataDto;
+import by.tms.aviaticket.entity.dto.UserLoginDto;
+import by.tms.aviaticket.entity.dto.UserPasswordEditDto;
+import by.tms.aviaticket.entity.dto.UserRegDto;
 import by.tms.aviaticket.service.exception.UserDataException;
 import by.tms.aviaticket.dao.UserDao;
 import by.tms.aviaticket.entity.User;

@@ -15,7 +15,6 @@ public class Passenger {
     private String number;
     private String fname;
     private String lname;
-    private String sex;
     private LocalDate dateOfBirth;
     private LocalDate dateOfIssue;
 }

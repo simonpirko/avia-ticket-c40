@@ -2,13 +2,12 @@ package by.tms.aviaticket.dao.inmemory;
 
 import by.tms.aviaticket.dao.UserDao;
 import by.tms.aviaticket.entity.User;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Component
+
 public class InMemoryUserDao implements UserDao {
     private final List<User> userList = new ArrayList<>();
     private static int incId = 1;

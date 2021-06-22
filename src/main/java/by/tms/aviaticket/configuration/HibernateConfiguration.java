@@ -18,7 +18,7 @@ public class HibernateConfiguration {
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan("by.tms");
+        sessionFactory.setPackagesToScan("by.tms.aviaticket.entity");
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
     }

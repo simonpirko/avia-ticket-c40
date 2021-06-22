@@ -13,12 +13,14 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
-public class User extends Passenger {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String email;
-    private String phoneNumber;
     private String password;
+    private String fname;
+    private String lname;
+    private String phoneNumber;
     private int miles;
 }

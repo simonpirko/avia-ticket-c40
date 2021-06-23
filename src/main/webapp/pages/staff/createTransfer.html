@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление трансфера</title>
+</head>
+<body>
+<div class="container" layout:fragment="content">
+    <div class="row">
+        <div class="col-md-12">
+            <br>
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Главная</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Добавление трансфера</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="col-md-12">
+            <h3 class="text-center">Добавление трансфера</h3>
+        </div>
+        <div class="row">
+            <form action="#" th:action="@{/staff/transfer/create}" th:object="${transfer}" method="post">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="inputDateOfDeparture" class="form-label">Дата отправления</label>
+                        <input type="datetime-local" class="form-control" id="inputDateOfDeparture" th:field="*{dateOfDeparture}">
+                        <div th:if="${#fields.hasErrors('dateOfDeparture')}" th:errors="*{dateOfDeparture}" style="color: red;"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputDateOfArrival" class="form-label">Дата прибытия</label>
+                        <input type="datetime-local" class="form-control" id="inputDateOfArrival" th:field="*{dateOfArrival}">
+                        <div th:if="${#fields.hasErrors('dateOfArrival')}" th:errors="*{dateOfArrival}" style="color: red;"></div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="inputPlaceOfDeparture" class="form-label">Место отправления</label>
+                        <input type="text" class="form-control" id="inputPlaceOfDeparture" th:field="*{placeOfDeparture}">
+                        <div th:if="${#fields.hasErrors('placeOfDeparture')}" th:errors="*{placeOfDeparture}" style="color: red;"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputPlaceOfArrival" class="form-label">Место прибытия</label>
+                        <input type="text" class="form-control" id="inputPlaceOfArrival" th:field="*{placeOfArrival}">
+                        <div th:if="${#fields.hasErrors('placeOfArrival')}" th:errors="*{placeOfArrival}" style="color: red;"></div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="selectAirplane" class="form-label">Самалет</label>
+                        <select class="form-select" th:field="*{airplaneId}" id="selectAirplane">
+                            <option
+                                    th:each="item : ${airplaneList}"
+                                    th:value="${item.getId()}"
+                                    th:text="${item.getCompany() + ' (' + item.getBrand() + ')'}"
+                            >
+                                Airplane
+                            </option>
+                            <div th:if="${#fields.hasErrors('airplaneId')}" th:errors="*{airplaneId}" style="color: red;"></div>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputDistance" class="form-label">Растояние перелета</label>
+                        <input type="number" class="form-control" id="inputDistance" th:field="*{distance}">
+                        <div th:if="${#fields.hasErrors('distance')}" th:errors="*{distance}" style="color: red;"></div>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <button type="submit" class="btn btn-primary">Добавить трансфер</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <th:block th:replace="fragments/alert :: alert"></th:block>
+</div>
+</body>
+</html>

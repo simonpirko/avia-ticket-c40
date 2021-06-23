@@ -14,7 +14,10 @@
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="#" class="nav-link px-2 text-white">Справка</a></li>
+
+                <th:block th:replace="fragments/staffMenu :: staffMenu"></th:block>
             </ul>
+
 
             <div th:unless="${session.user}" class="text-end">
                 <a href="/user/login" class="btn btn-outline-light me-2">Авторизация</a>

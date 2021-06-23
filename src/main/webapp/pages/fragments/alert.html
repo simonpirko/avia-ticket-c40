@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <th:block th:fragment="alert">
+    <br>
+    <div th:if="${message != null || param.message != null}" class="alert alert-warning alert-dismissible fade show" role="alert">
+        <b th:if="${message}" th:text="${message}"></b>
+        <b th:unless="${message}" th:text="${param.message}"></b>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </th:block>
+</body>
+</html>

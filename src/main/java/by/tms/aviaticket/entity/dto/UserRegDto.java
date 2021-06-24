@@ -1,4 +1,4 @@
-package by.tms.aviaticket.entity.UserDto;
+package by.tms.aviaticket.entity.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

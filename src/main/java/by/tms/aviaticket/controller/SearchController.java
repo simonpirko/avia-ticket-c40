@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -26,8 +30,8 @@ public class SearchController {
     }
 
 
-    @PostMapping("search")
-    public String searchView(String from, String to, LocalDate departure, int count, Model model){
+    @GetMapping("search")
+    public String searchView(@NotBlank @NotNull String from, @NotBlank @NotNull String to, LocalDate departure, @Min(1) @Max(10) int count, Model model){
         List<Flight> flights = searchService.find(from, to, departure, count);
         if (flights.size() == 0){
             model.addAttribute("searchMessage","Flight not found");

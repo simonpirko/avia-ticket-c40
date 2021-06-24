@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список самолетов</title>
+</head>
+<body>
+<div class="container" layout:fragment="content">
+    <div class="row">
+        <div class="col-md-12">
+            <br>
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Главная</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Список самолетов</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="col-md-12">
+            <h3 class="text-center">Список самолетов</h3>
+            <table class="table table-hover table-bordered table-light">
+                <thead>
+                <tr>
+                    <th scope="col">Брэнд</th>
+                    <th scope="col">Компания</th>
+                    <th scope="col">Мест для<br>эконом класса</th>
+                    <th scope="col">Мест для<br>бизнес класса</th>
+                    <th scope="col">Макс. вес для<br>эконом класса</th>
+                    <th scope="col">Макс. вес для<br>бизнес класса</th>
+                    <th>Действие</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item: ${list}">
+                    <td th:text="${item.getBrand()}"></td>
+                    <td th:text="${item.getCompany()}"></td>
+                    <td th:text="${item.getEconomySeats()}"></td>
+                    <td th:text="${item.getBusinessSeats()}"></td>
+                    <td th:text="${item.getEconomyCapacity()}"></td>
+                    <td th:text="${item.getBusinessCapacity()}"></td>
+                    <td>
+                        <form action="#" th:action="@{/staff/airplane/delete/{id}(id=${item.getId()})}" method="post">
+                            <div class="btn-group" role="group">
+                                <a th:href="@{/staff/airplane/update/{id}(id=${item.getId()})}" class="btn btn-warning">Редактировать</a>
+                                <button class="btn btn-danger" type="submit">Удалить</button>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <th:block th:replace="fragments/alert :: alert"></th:block>
+</div>
+</body>
+</html>

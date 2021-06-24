@@ -9,13 +9,17 @@ import by.tms.aviaticket.dao.UserDao;
 import by.tms.aviaticket.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
-@Component
+@Service
+@Transactional
 public class UserService {
     @Autowired
     private UserDao userDao;
+
 
     public void add(UserRegDto dto) {
         User user = createUser(dto);
@@ -27,12 +31,13 @@ public class UserService {
 
 
     public User userAuth(UserLoginDto dto) {
-        Optional<User> byEmail = userDao.getByEmail(dto.getEmail());
-
-        if (!byEmail.isPresent()) {
+        if (!userDao.containsByEmail(dto.getEmail())) {
             throw new UserDataException("A user with this email doesn't exists!");
         }
+
+        Optional<User> byEmail = userDao.getByEmail(dto.getEmail());
         User user = byEmail.get();
+
         if (!user.getPassword().equals(dto.getPassword())) {
             throw new UserDataException("Invalid password");
         }
